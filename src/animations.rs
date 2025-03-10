@@ -4,9 +4,100 @@ use std::time::Duration;
 use crate::color::*;
 use crate::display;
 use crate::display::*;
+use crate::display2::Display2;
 use crate::utility::random_char;
 
-pub fn lsd(display: &mut Display) {
+pub fn rgb_load(display: &mut Display2) {
+    loop {
+        let delay = Duration::from_millis(1);
+
+        let mut x = 0;
+        let mut y = 0;
+        let center = display.get_center_point();
+        let width = display.get_width() - 1;
+        let height = display.get_height() - 1;
+
+        let mut color = Color::red();
+        let char = ' ';
+
+        while x < width {
+            display.draw_line((x, y), center, char, color.clone());
+            x += 1;
+            print!("{display}");
+            sleep(delay);
+        }
+        while y < height {
+            display.draw_line((x, y), center, char, color.clone());
+            y += 1;
+            print!("{display}");
+            sleep(delay);
+        }
+        while x > 0 {
+            display.draw_line((x, y), center, char, color.clone());
+            x -= 1;
+            print!("{display}");
+            sleep(delay);
+        }
+        while y > 0 {
+            display.draw_line((x, y), center, char, color.clone());
+            y -= 1;
+            print!("{display}");
+            sleep(delay);
+        }
+        color = Color::green();
+        while x < width {
+            display.draw_line((x, y), center, char, color.clone());
+            x += 1;
+            print!("{display}");
+            sleep(delay);
+        }
+        while y < height {
+            display.draw_line((x, y), center, char, color.clone());
+            y += 1;
+            print!("{display}");
+            sleep(delay);
+        }
+        while x > 0 {
+            display.draw_line((x, y), center, char, color.clone());
+            x -= 1;
+            print!("{display}");
+            sleep(delay);
+        }
+        while y > 0 {
+            display.draw_line((x, y), center, char, color.clone());
+            y -= 1;
+            print!("{display}");
+            sleep(delay);
+        }
+        color = Color::blue();
+        while x < width {
+            display.draw_line((x, y), center, char, color.clone());
+            x += 1;
+            print!("{display}");
+            sleep(delay);
+        }
+        while y < height {
+            display.draw_line((x, y), center, char, color.clone());
+            y += 1;
+            print!("{display}");
+            sleep(delay);
+        }
+        while x > 0 {
+            display.draw_line((x, y), center, char, color.clone());
+            x -= 1;
+            print!("{display}");
+            sleep(delay);
+        }
+        while y > 0 {
+            display.draw_line((x, y), center, char, color.clone());
+            y -= 1;
+            print!("{display}");
+            sleep(delay);
+        }
+    }
+}
+
+pub fn lsd(display: &mut Display2) {
     loop {
         let delay = Duration::from_millis(10);
 
@@ -24,7 +115,7 @@ pub fn lsd(display: &mut Display) {
             x += 1;
             color = Color::random();
             char = random_char();
-            print!("{display}");
+            println!("{display}");
             sleep(delay);
         }
         while y < height {
@@ -32,7 +123,7 @@ pub fn lsd(display: &mut Display) {
             y += 1;
             color = Color::random();
             char = random_char();
-            print!("{display}");
+            println!("{display}");
             sleep(delay);
         }
         while x > 0 {
@@ -40,7 +131,7 @@ pub fn lsd(display: &mut Display) {
             x -= 1;
             color = Color::random();
             char = random_char();
-            print!("{display}");
+            println!("{display}");
             sleep(delay);
         }
         while y > 0 {
@@ -48,17 +139,17 @@ pub fn lsd(display: &mut Display) {
             y -= 1;
             color = Color::random();
             char = random_char();
-            print!("{display}");
+            println!("{display}");
             sleep(delay);
         }
     }
 }
-pub fn jumping_ball(display: &mut Display) {
+pub fn jumping_ball(display: &mut Display2, ball_radius: usize) {
     let delay = Duration::from_millis(50); // Adjust delay for speed
 
     let center_x = display.get_width() / 2;
     let mut center_y = display.get_height() / 2; // Start in the middle
-    let radius = 5;
+    let radius = ball_radius;
     let mut velocity_y = 1; // Initial downward velocity
 
     loop {
@@ -82,7 +173,7 @@ pub fn jumping_ball(display: &mut Display) {
     }
 }
 
-pub fn dvd_logo(display: &mut Display) {
+pub fn dvd_logo(display: &mut Display2) {
     let delay = Duration::from_millis(1);
 
     let logo = "DVD"; // Single string logo

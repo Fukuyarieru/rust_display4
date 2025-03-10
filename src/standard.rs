@@ -50,6 +50,16 @@ impl<T> Vec2<T> {
             Some(self.vec2[x][y].clone())
         }
     }
+    pub fn get_mut_ref(&mut self, x: usize, y: usize) -> Option<&mut T>
+    where
+        T: Clone,
+    {
+        if x >= self.get_width() || y >= self.get_height() {
+            None
+        } else {
+            Some(&mut self.vec2[x][y])
+        }
+    }
     pub fn get_width(&self) -> usize {
         self.vec2.len()
     }
